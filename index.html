@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Rock Paper Scissors AI</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- TensorFlow.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"></script>
+
+    <!-- Teachable Machine Image Library -->
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest"></script>
+</head>
+
+<body>
+
+    <div class="game-container">
+
+        <h1>Rock Paper Scissors AI</h1>
+
+        <p class="instructions">
+            Show your hand to the camera.
+        </p>
+
+        <div class="camera-container">
+            <div id="webcam-container"></div>
+        </div>
+
+        <div class="prediction">
+            <h2>Your Move</h2>
+            <div id="player-move">Waiting...</div>
+        </div>
+
+        <div class="versus">
+            VS
+        </div>
+
+        <div class="ai-container">
+            <h2>AI Move</h2>
+            <div id="ai-move">Waiting...</div>
+        </div>
+
+        <div class="result-container">
+            <h2 id="result">Press Start Game</h2>
+        </div>
+
+        <button id="start-button" onclick="startGame()">
+            Start Game
+        </button>
+
+        <button id="play-button" onclick="playRound()" disabled>
+            Play Round
+        </button>
+
+        <div class="scores">
+            <div>
+                <strong>You</strong>
+                <span id="player-score">0</span>
+            </div>
+
+            <div>
+                <strong>Draws</strong>
+                <span id="draw-score">0</span>
+            </div>
+
+            <div>
+                <strong>AI</strong>
+                <span id="ai-score">0</span>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

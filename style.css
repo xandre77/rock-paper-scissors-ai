@@ -1,0 +1,128 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f2f2f2;
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+}
+
+.game-container {
+    background: white;
+    width: 100%;
+    max-width: 700px;
+
+    padding: 30px;
+    border-radius: 20px;
+
+    text-align: center;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+h1 {
+    margin-bottom: 10px;
+}
+
+.instructions {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.camera-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+#webcam-container canvas {
+    border-radius: 15px;
+    max-width: 100%;
+}
+
+.prediction,
+.ai-container {
+    margin: 15px 0;
+}
+
+.prediction h2,
+.ai-container h2 {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+#player-move,
+#ai-move {
+    font-size: 45px;
+    font-weight: bold;
+}
+
+.versus {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 10px;
+}
+
+.result-container {
+    margin: 20px 0;
+}
+
+#result {
+    font-size: 28px;
+}
+
+button {
+    border: none;
+    padding: 12px 25px;
+    margin: 5px;
+
+    border-radius: 10px;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+#start-button {
+    background: #222;
+    color: white;
+}
+
+#play-button {
+    background: #444;
+    color: white;
+}
+
+button:disabled {
+    background: #aaa;
+    cursor: not-allowed;
+}
+
+.scores {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+
+    margin-top: 25px;
+}
+
+.scores div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.scores span {
+    font-size: 25px;
+    font-weight: bold;
+}

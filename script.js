@@ -25,25 +25,66 @@ let drawScore = 0;
 
 async function startGame() {
 
-    document.getElementById("start-button").disabled = true;
-
-    document.getElementById("result").innerText =
-        "Loading AI model...";
+    const result = document.getElementById("result");
 
     try {
 
-        const modelURL = MODEL_URL + "model.json";
-        const metadataURL = MODEL_URL + "metadata.json";
+        result.innerText = "Loading AI model...";
 
-        // Load Teachable Machine model
+        // Check that TensorFlow.js is loaded
+        if (typeof tf === "undefined") {
+            throw new Error(
+                "TensorFlow.js did not load."
+            );
+        }
+
+        // Check that Teachable Machine is loaded
+        if (typeof tmImage === "undefined") {
+            throw new Error(
+                "Teachable Machine library did not load."
+            );
+        }
+
+        console.log("TensorFlow.js loaded:", tf.version.tfjs);
+        console.log("Teachable Machine loaded.");
+
+        // ------------------------------------------
+        // LOAD TEACHABLE MACHINE MODEL
+        // ------------------------------------------
+
+        const modelURL =
+            MODEL_URL + "model.json";
+
+        const metadataURL =
+            MODEL_URL + "metadata.json";
+
+        console.log("Model URL:", modelURL);
+        console.log("Metadata URL:", metadataURL);
+
         model = await tmImage.load(
             modelURL,
             metadataURL
         );
 
-        maxPredictions = model.getTotalClasses();
+        maxPredictions =
+            model.getTotalClasses();
 
-        // Create webcam
+        console.log(
+            "Model loaded successfully."
+        );
+
+        console.log(
+            "Number of classes:",
+            maxPredictions
+        );
+
+        // ------------------------------------------
+        // START WEBCAM
+        // ------------------------------------------
+
+        result.innerText =
+            "Requesting camera access...";
+
         const flip = true;
 
         webcam = new tmImage.Webcam(
@@ -58,11 +99,25 @@ async function startGame() {
 
         document
             .getElementById("webcam-container")
+            .innerHTML = "";
+
+        document
+            .getElementById("webcam-container")
             .appendChild(webcam.canvas);
 
-        document.getElementById("play-button").disabled = false;
+        // ------------------------------------------
+        // ENABLE GAME
+        // ------------------------------------------
 
-        document.getElementById("result").innerText =
+        document.getElementById(
+            "start-button"
+        ).disabled = true;
+
+        document.getElementById(
+            "play-button"
+        ).disabled = false;
+
+        result.innerText =
             "Show Rock, Paper, or Scissors!";
 
         // Start prediction loop
@@ -70,12 +125,17 @@ async function startGame() {
 
     } catch (error) {
 
-        console.error(error);
+        console.error(
+            "FULL ERROR:",
+            error
+        );
 
-        document.getElementById("result").innerText =
-            "Could not load the camera or AI model.";
+        result.innerText =
+            "ERROR: " + error.message;
 
-        document.getElementById("start-button").disabled = false;
+        document.getElementById(
+            "start-button"
+        ).disabled = false;
     }
 }
 

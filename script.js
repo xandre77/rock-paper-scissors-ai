@@ -4,7 +4,7 @@
 
 
 const MODEL_URL =
-    "https://teachablemachine.withgoogle.com/models/N-fRrMZ1R/";
+    "https://teachablemachine.withgoogle.com/models/hcGbnZzau/";
 
 
 let model;
